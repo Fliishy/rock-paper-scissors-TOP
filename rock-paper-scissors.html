@@ -54,64 +54,62 @@
       });
 
       let computerSelection = '';
+      let playerScore = 0;
+      let computerScore = 0;
 
       function playRound(playerSelection, computerSelection) {
         playerSelection = playerChoice;
         computerSelection = computerPlay();
 
-        
         if (playerSelection === 'rock' && computerSelection === 'paper') {
           result.textContent = "Paper beats rock! Computer wins!";
-          scores.textContent = `Player: ${playerScore} | Computer: ${computerScore + 1}`;
+          computerScore += 1;
+          scores.textContent = `Player: ${playerScore} | Computer: ${computerScore}`;
         }
         else if (playerSelection === 'paper' && computerSelection === 'rock') {
           result.textContent = "Paper beats rock! Player wins!";
-          scores.textContent = `Player: ${playerScore + 1} | Computer: ${computerScore}`;
+          playerScore += 1;
+          scores.textContent = `Player: ${playerScore} | Computer: ${computerScore}`;
         }
         else if (playerSelection === 'scissors' && computerSelection === 'rock') {
           result.textContent = "Rock beats scissors! Computer wins!";
-          scores.textContent = `Player: ${playerScore} | Computer: ${computerScore + 1}`;
+          computerScore += 1;
+          scores.textContent = `Player: ${playerScore} | Computer: ${computerScore}`;
         }
         else if (playerSelection === 'rock' && computerSelection === 'scissors') {
           result.textContent = "Rock beats scissors! Player wins!";
-          scores.textContent = `Player: ${playerScore + 1} | Computer: ${computerScore}`;
+          playerScore += 1;
+          scores.textContent = `Player: ${playerScore} | Computer: ${computerScore}`;
         }
         else if (playerSelection === 'paper' && computerSelection === 'scissors') {
           result.textContent = "Scissors beats paper! Computer wins!";
-          scores.textContent = `Player: ${playerScore} | Computer: ${computerScore + 1}`;
+          computerScore += 1;
+          scores.textContent = `Player: ${playerScore} | Computer: ${computerScore}`;
         }
         
         else if (playerSelection === 'scissors' && computerSelection === 'paper') {
           result.textContent = "Scissors beats paper! Player wins!";
-          scores.textContent = `Player: ${playerScore + 1} | Computer: ${computerScore}`;
+          playerScore += 1;
+          scores.textContent = `Player: ${playerScore} | Computer: ${computerScore}`;
         }
         else {
           result.textContent = "Tie Game!";
         }
+
+        if (computerScore === 5) {
+          result.textContent = "Game over! Computer wins!";
+          computerScore = 0;
+          playerScore = 0;
+          scores.textContent = `Player: ${playerScore} | Computer: ${computerScore}`;
+        }
+
+        else if (playerScore === 5) {
+          result.textContent = "Game over! Player wins!";
+          computerScore = 0;
+          playerScore = 0;
+          scores.textContent = `Player: ${playerScore} | Computer: ${computerScore}`;
+        }
       }
-       // function game() {
-      //   while (computerScore != 5 || playerScore != 5){
-      //      playRound(playerChoice, computerSelection);
-      //      console.log(`Player:${playerScore} | Computer:${computerScore}`);
-
-      //      if (computerScore === 5 || playerScore === 5) {
-      //        break
-      //      }
-      //    }
-
-      //    if (computerScore === 5) {
-      //      console.log('\nGame over. Computer wins!');
-      //    }
-
-      //    else {
-      //      console.log('\nGame over. Player wins!');
-      //    }
-      //   }
-        
-      // game();
-
-      let playerScore = 0;
-      let computerScore = 0;
 
       const container = document.querySelector('#container');
 
@@ -123,8 +121,6 @@
       scores.textContent = `Player: ${playerScore} | Computer: ${computerScore}`;
       container.appendChild(scores);
 
-      
-      
    </script>
    
 </html>
