@@ -2,22 +2,29 @@
 <html>
   <head>
     <meta charset='utf-8'>
+    <link rel="stylesheet" href="style.css">
     
     <title>Rock, Paper, Scissors</title>
     
     <body>
+
       <h1> Rock-Paper-Scissors </h1>
 
-      <button class="button" id="rockButton"><img src="images/rock.png" width="50px" alt="rock"></button>
-      <button class="button" id="paperButton"><img src="images/paper.png" width="50px" alt="paper"></button>
-      <button class="button" id="scissorsButton"><img src="images/scissors.png" width="50px" alt="scissors"></button>
-      
-      <div id="container"><br></div>
+      <!--buttons for rock paper scissors inside a container-->
+      <div id="buttonBox">
+        <button class="button" id="rockButton"><img src="images/rock.svg" alt="rock"></button>
+        <button class="button" id="paperButton"><img src="images/paper.svg" alt="paper"></button>
+        <button class="button" id="scissorsButton"><img src="images/scissors.svg" alt="scissors"></button>
+    </div>
+
+      <!--This is the container for the winner text and scores-->
+      <div id="container"></div>
 
     </body>
     
     <script>
 
+      // This randomly selects rock, paper, scissors for the computer
       function computerPlay() {
         let computerChoice = Math.floor(Math.random() * 3 + 1);
 
@@ -35,6 +42,7 @@
         }
       }
 
+      // This is the functionality for when a button is clicked to choose r/p/s
       const rockButton = document.querySelector("#rockButton");
       rockButton.addEventListener('click', () => {
         playerChoice = "rock";
@@ -57,6 +65,8 @@
       let playerScore = 0;
       let computerScore = 0;
 
+      // Game function that checks what player did vs what computer did
+      // answers are compared and +1 score is added when someone wins
       function playRound(playerSelection, computerSelection) {
         playerSelection = playerChoice;
         computerSelection = computerPlay();
@@ -96,6 +106,8 @@
           result.textContent = "Tie Game!";
         }
 
+        // if a score reaches 5, text appears and the scores are reset
+
         if (computerScore === 5) {
           result.textContent = "Game over! Computer wins!";
           computerScore = 0;
@@ -111,13 +123,16 @@
         }
       }
 
+      // these are the containers for the victory text and scores
       const container = document.querySelector('#container');
 
       const result = document.createElement('div');
-      result.textContent = '-';
+      result.classList.add('textResult');
+      result.textContent = 'Game Start!';
       container.appendChild(result);
 
       const scores = document.createElement('div');
+      scores.classList.add('textScores');
       scores.textContent = `Player: ${playerScore} | Computer: ${computerScore}`;
       container.appendChild(scores);
 
